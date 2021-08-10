@@ -1,6 +1,6 @@
 {
   "name": "@xiaokyo/cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "node cli tools",
   "keywords": [
     "git"
@@ -31,5 +31,6 @@
   },
   "dependencies": {
     "chalk": "^4.1.2"
-  }
+  },
+  "gitHead": "eeae6d531f4b288786159293fd8ebfa62d25226a"
 }

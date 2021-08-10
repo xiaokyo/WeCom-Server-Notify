@@ -1,6 +1,6 @@
 {
   "name": "@xiaokyo/utils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "javascript common functions",
   "keywords": [
     "utils",
@@ -32,5 +32,6 @@
   },
   "dependencies": {
     "chalk": "^4.1.2"
-  }
+  },
+  "gitHead": "eeae6d531f4b288786159293fd8ebfa62d25226a"
 }
