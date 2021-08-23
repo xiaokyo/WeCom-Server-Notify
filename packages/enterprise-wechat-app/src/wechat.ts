@@ -1,10 +1,5 @@
 import { get, post } from './request'
-
-interface WechatConfig {
-  corpid: string
-  corpsecret: string
-  agentId: string
-}
+import { ApiSendParams, TextCard, WechatConfig } from './type'
 
 export default class wechat {
   config: WechatConfig
@@ -34,15 +29,12 @@ export default class wechat {
     return await this.apiSend({ token, data: content })
   }
 
-  async sendTextCard(
-    token: string,
-    data: { title: string; description: string; url: string; btntxt?: string }
-  ) {
+  async sendTextCard(token: string, data: TextCard) {
     data.btntxt = data.btntxt ? data.btntxt : '详情'
     await this.apiSend({ token, data, msgtype: 'textcard' })
   }
 
-  async apiSend({ token, data, msgtype = 'text' }) {
+  async apiSend({ token, data, msgtype = 'text' }: ApiSendParams) {
     const url = `/cgi-bin/message/send?access_token=${token}`
 
     const params = {
