@@ -1,0 +1,14 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "./dist",
+    "resolveJsonModule": true,
+    "target": "esnext",
+    "declaration": false
+  },
+  "include": [
+    "./src",
+    "./typing.d.ts"
+  ]
+}

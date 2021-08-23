@@ -6,7 +6,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "http://192.168.5.143/module-federation/mf-components.git"
+    "url": "git@github.com:xiaokyo/xiaokyo-packages.git"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",

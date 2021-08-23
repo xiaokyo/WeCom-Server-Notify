@@ -10,3 +10,5 @@ build
 node_modules
 
 *.log
+
+packages/create-wechat-message/example/src/wechat.config.ts
