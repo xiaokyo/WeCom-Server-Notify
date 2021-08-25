@@ -1,8 +1,10 @@
 import { get, post } from './request'
 import { ApiSendParams, TextCard, WechatConfig } from './type'
+export * from './type'
 
 export default class wechat {
   config: WechatConfig
+  token: string
 
   constructor(config: WechatConfig) {
     this.config = config
@@ -21,17 +23,25 @@ export default class wechat {
   }
 
   /**
+   * 设置token
+   * @param token token
+   */
+  setToken(token: string) {
+    this.token = token
+  }
+
+  /**
    * 返送文本消息
    * @param token 企业通行证token
    * @param content 发送文本
    */
-  async sendText(token: string, content: string = 'hello world') {
-    return await this.apiSend({ token, data: content })
+  async sendText(content: string = 'hello world') {
+    return await this.apiSend({ token: this.token, data: content })
   }
 
-  async sendTextCard(token: string, data: TextCard) {
+  async sendTextCard(data: TextCard) {
     data.btntxt = data.btntxt ? data.btntxt : '详情'
-    await this.apiSend({ token, data, msgtype: 'textcard' })
+    await this.apiSend({ token: this.token, data, msgtype: 'textcard' })
   }
 
   async apiSend({ token, data, msgtype = 'text' }: ApiSendParams) {

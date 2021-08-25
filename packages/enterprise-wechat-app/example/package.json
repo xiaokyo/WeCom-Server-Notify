@@ -5,7 +5,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node-dev ./src/example.ts --watch"
+    "start": "ts-node-dev ./src/example.ts --watch",
+    "build": "tsc"
   },
   "dependencies": {
     "express": "^4.17.1",

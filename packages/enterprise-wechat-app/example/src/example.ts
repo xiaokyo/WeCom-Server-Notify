@@ -1,6 +1,6 @@
-import wechat from '@xiaokyo/enterprise-wechat-app'
+import { WechatConfig } from '@xiaokyo/enterprise-wechat-app'
 import express from 'express'
-import { redisGet, redisSet } from './redis'
+import getWechatToken from './get-token'
 
 const app = express()
 
@@ -8,59 +8,19 @@ app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/apis/sendText', async function (req, res) {
-  const { corpid, corpsecret, agentId, content = 'enterprise wechat app manager' } = req.query
-  if (!corpid || !corpsecret || !agentId)
-    return res.status(400).send({ code: 10001, message: 'params invaild' })
-
-  const wc = new wechat({ corpid: `${corpid}`, corpsecret: `${corpsecret}`, agentId: `${agentId}` })
-  const redisKey = `${corpid}-${agentId}-${corpsecret}`
-  // redisSet(redisKey)
-  let token = await redisGet(redisKey)
-  if (!token) {
-    const tokenRes = await wc.getToken()
-    if (!tokenRes || (tokenRes && tokenRes.errcode !== 0)) {
-      // 未获取到token
-      return res.send({ code: 10002, message: 'get token faild' })
-    }
-
-    if (tokenRes && tokenRes.access_token) {
-      redisSet(redisKey, tokenRes.access_token)
-      token = tokenRes.access_token
-    }
+  interface SendTextQuery extends WechatConfig {
+    content: string
   }
-
-  if (typeof token !== 'string') return res.status(400)
-
-  const sendRes = await wc.sendText(token, `${content}`)
-
+  const { content = 'enterprise wechat app manager', ...options }: SendTextQuery = req.query as any
+  const wc = await getWechatToken(options)
+  const sendRes = await wc.sendText(`${content}`)
   res.send(sendRes)
 })
 
 app.post('/apis/sendTextCard', async function (req, res) {
-  res.send(req.body)
-  const { corpid, corpsecret, agentId, textcard } = req.body
-  if (!corpid || !corpsecret || !agentId || !textcard)
-    return res.status(400).send({ code: 10001, message: 'params invaild' })
-
-  const wc = new wechat({ corpid: `${corpid}`, corpsecret: `${corpsecret}`, agentId: `${agentId}` })
-  const redisKey = `${corpid}-${agentId}-${corpsecret}`
-  // redisSet(redisKey)
-  let token = await redisGet(redisKey)
-  if (!token) {
-    const tokenRes = await wc.getToken()
-    if (!tokenRes || (tokenRes && tokenRes.errcode !== 0)) {
-      // 未获取到token
-      return res.send({ code: 10002, message: 'get token faild' })
-    }
-
-    if (tokenRes && tokenRes.access_token) {
-      redisSet(redisKey, tokenRes.access_token)
-      token = tokenRes.access_token
-    }
-  }
-
-  if (typeof token !== 'string') return res.status(400)
-  const sendRes = await wc.sendTextCard(token, textcard)
+  const { textcard, ...options } = req.body as any
+  const wc = await getWechatToken(options)
+  const sendRes = await wc.sendTextCard(textcard)
   res.send(sendRes)
 })
 
