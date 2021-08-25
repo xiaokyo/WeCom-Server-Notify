@@ -11,7 +11,6 @@ export interface WechatConfig {
  * 发送api参数
  */
 export interface ApiSendParams {
-  token: string
   data: string | TextCard
   msgtype?: 'text' | 'textcard'
 }

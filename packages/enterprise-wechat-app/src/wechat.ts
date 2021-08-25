@@ -36,16 +36,21 @@ export default class wechat {
    * @param content 发送文本
    */
   async sendText(content: string = 'hello world') {
-    return await this.apiSend({ token: this.token, data: content })
+    return await this.apiSend({ data: content })
   }
 
+  /**
+   * 发送卡片消息
+   * @param data TextCard
+   */
   async sendTextCard(data: TextCard) {
     data.btntxt = data.btntxt ? data.btntxt : '详情'
-    await this.apiSend({ token: this.token, data, msgtype: 'textcard' })
+    await this.apiSend({ data, msgtype: 'textcard' })
   }
 
-  async apiSend({ token, data, msgtype = 'text' }: ApiSendParams) {
-    const url = `/cgi-bin/message/send?access_token=${token}`
+  /** 通用发送接口 */
+  async apiSend({ data, msgtype = 'text' }: ApiSendParams) {
+    const url = `/cgi-bin/message/send?access_token=${this.token}`
 
     const params = {
       url,

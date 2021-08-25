@@ -1,27 +1,56 @@
 import { WechatConfig } from '@xiaokyo/enterprise-wechat-app'
 import express from 'express'
-import getWechatToken from './get-token'
+import getWechatToken, { vaildToken } from './get-token'
+import { v4 as uuidv4 } from 'uuid'
+import { existsEnterprise, getEnterprise, setEnterprise } from './common/enterprise-info'
 
 const app = express()
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/apis/sendText', async function (req, res) {
-  interface SendTextQuery extends WechatConfig {
-    content: string
+app.get('/enterprise/getSecret', async (req, res) => {
+  try {
+    const { phone, ...options }: WechatConfig & any = req.query as any
+    if (!phone) throw new Error('phone is required')
+    if (await existsEnterprise(phone)) {
+      res.send(await getEnterprise(phone))
+      return
+    }
+    const token = await vaildToken(options)
+    if (token) {
+      const uid = uuidv4()
+      setEnterprise(uid, options)
+      setEnterprise(phone, uid)
+      res.send(uid)
+    }
+  } catch (err) {
+    console.log(err)
+    res.send(err.message)
   }
-  const { content = 'enterprise wechat app manager', ...options }: SendTextQuery = req.query as any
-  const wc = await getWechatToken(options)
-  const sendRes = await wc.sendText(`${content}`)
-  res.send(sendRes)
 })
 
-app.post('/apis/sendTextCard', async function (req, res) {
-  const { textcard, ...options } = req.body as any
-  const wc = await getWechatToken(options)
-  const sendRes = await wc.sendTextCard(textcard)
-  res.send(sendRes)
+app.get('/enterprise/sendText', async (req, res) => {
+  try {
+    const { content = 'enterprise wechat app manager', secret = '' } = req.query as any
+    const wc = await getWechatToken(secret)
+    const sendRes = await wc.sendText(`${content}`)
+    res.send(sendRes)
+  } catch (err) {
+    res.send(err.message)
+  }
+})
+
+app.post('/enterprise/sendTextCard', async function (req, res) {
+  try {
+    const { secret = '' } = req.query as any
+    const { textcard } = req.body as any
+    const wc = await getWechatToken(secret)
+    const sendRes = await wc.sendTextCard(textcard)
+    res.send(sendRes)
+  } catch (err) {
+    res.send(err.message)
+  }
 })
 
 app.listen(3000)

@@ -11,9 +11,9 @@ client.on('error', function (error) {
  * @param value 值
  * @param expires 失效/秒
  */
-export function redisSet(key: string, value: string, expires: number = 7200) {
+export function redisSet(key: string, value: string, expires?: number) {
   client.set(key, value)
-  client.expire(key, expires)
+  expires && client.expire(key, expires)
 }
 
 /**
@@ -26,6 +26,19 @@ export function redisGet(key: string): Promise<string> {
     client.get(key, function (err, reply) {
       if (err) return resolve('')
       resolve(reply)
+    })
+  })
+}
+
+/**
+ * 是否存在键
+ * @param key 键
+ * @returns boolean
+ */
+export function redisExists(key: string): Promise<boolean> {
+  return new Promise(resolve => {
+    client.exists(key, function (err, number) {
+      resolve(err ? false : number == 1)
     })
   })
 }
