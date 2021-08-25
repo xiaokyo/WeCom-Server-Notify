@@ -6,6 +6,9 @@
   "homepage": "https://github.com/xiaokyo/xiaokyo-packages#readme",
   "license": "MIT",
   "main": "dist/wechat.js",
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "public"
   },

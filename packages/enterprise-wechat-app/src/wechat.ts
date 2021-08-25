@@ -6,6 +6,7 @@ export default class wechat {
   config: WechatConfig
   token: string
 
+  // 初始化
   constructor(config: WechatConfig) {
     this.config = config
   }
