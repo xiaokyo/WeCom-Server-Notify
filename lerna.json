@@ -9,7 +9,7 @@
     "publish": {
       "ignoreChanges": [
         "*.md",
-        "example"
+        "enterprise-message"
       ],
       "message": "chore(root): publish"
     }

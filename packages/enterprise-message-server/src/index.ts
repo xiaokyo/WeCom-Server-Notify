@@ -34,7 +34,12 @@ app.get('/enterprise/sendText', async (req, res) => {
   try {
     const { content = 'enterprise wechat app manager', secret = '' } = req.query as any
     const wc = await getWechatToken(secret)
-    const sendRes = await wc.sendText(`${content}`)
+    let sendRes = await wc.sendText(`${content}`)
+    if (sendRes && sendRes.errcode === 40014) {
+      const { access_token: token }: any = await wc.getToken()
+      setEnterprise(secret, { ...wc.config, token })
+      sendRes = await wc.sendText(`${content}`)
+    }
     res.send(sendRes)
   } catch (err) {
     res.send(err.message)
@@ -46,7 +51,12 @@ app.post('/enterprise/sendTextCard', async function (req, res) {
     const { secret = '' } = req.query as any
     const { textcard } = req.body as any
     const wc = await getWechatToken(secret)
-    const sendRes = await wc.sendTextCard(textcard)
+    let sendRes = await wc.sendTextCard(textcard)
+    if (sendRes && sendRes.errcode === 40014) {
+      const { access_token: token }: any = await wc.getToken()
+      setEnterprise(secret, { ...wc.config, token })
+      sendRes = await wc.sendTextCard(textcard)
+    }
     res.send(sendRes)
   } catch (err) {
     res.send(err.message)

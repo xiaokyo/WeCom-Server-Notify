@@ -20,6 +20,9 @@ export default class wechat {
     const { corpid, corpsecret } = this.config
     const url = `/cgi-bin/gettoken?corpid=${corpid}&corpsecret=${corpsecret}`
     const res = await get({ url })
+    if (res && res.access_token) {
+      this.token = res.access_token
+    }
     return res
   }
 
@@ -46,7 +49,7 @@ export default class wechat {
    */
   async sendTextCard(data: TextCard) {
     data.btntxt = data.btntxt ? data.btntxt : '详情'
-    await this.apiSend({ data, msgtype: 'textcard' })
+    return await this.apiSend({ data, msgtype: 'textcard' })
   }
 
   /** 通用发送接口 */

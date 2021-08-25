@@ -9,7 +9,6 @@ const getWechatToken = async (secret: string): Promise<wechat> => {
 
   if (!token) {
     const tokenRes = await wc.getToken()
-    console.log(tokenRes)
     if (!tokenRes || (tokenRes && tokenRes.errcode !== 0)) {
       // 未获取到token
       throw new Error('get token faild')
@@ -17,7 +16,6 @@ const getWechatToken = async (secret: string): Promise<wechat> => {
 
     if (tokenRes && tokenRes.access_token) {
       setEnterprise(secret, { corpid, corpsecret, agentId, token: tokenRes.access_token })
-      wc.setToken(tokenRes.access_token)
     }
   }
 
