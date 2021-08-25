@@ -1,5 +1,0 @@
-export default {
-  corpid: 'xxxxxx',
-  corpsecret: 'xxxxxxxx',
-  agentId: 'xxxxxxx',
-}

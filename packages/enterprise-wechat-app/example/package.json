@@ -5,6 +5,16 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "tsc && node ./dist/example.js"
+    "start": "ts-node-dev ./src/example.ts --watch"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "redis": "^3.1.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/redis": "^2.8.31",
+    "ts-node": "^10.2.1",
+    "ts-node-dev": "^1.1.8"
   }
 }

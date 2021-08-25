@@ -1,13 +1,13 @@
-# `@xiaokyo/create-wechat-message`
+# `@xiaokyo/enterprise-wechat-app`
 
 > TODO: description
 
 ## Usage
 
 ```javascript
-const wechat = require('@xiaokyo/create-wechat-message').default;
+const wechat = require('@xiaokyo/enterprise-wechat-app').default;
 or
-import wechat from '@xiaokyo/create-wechat-message' 
+import wechat from '@xiaokyo/enterprise-wechat-app' 
 
 const wx = new wechat({
 	corpid: 'xxx', // 应用id
