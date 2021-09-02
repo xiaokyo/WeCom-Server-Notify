@@ -15,7 +15,7 @@
     "@typescript-eslint/parser": "^4.29.1",
     "commitizen": "^4.2.4",
     "cross-env": "^7.0.3",
-    "cz-lerna-changelog": "^2.0.3",
+    "cz-customizable": "^6.3.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
@@ -48,7 +48,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-lerna-changelog"
+      "path": "./node_modules/cz-customizable"
     }
   }
 }
