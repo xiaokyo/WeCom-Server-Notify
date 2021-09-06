@@ -5,9 +5,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev ./src/example.ts --watch",
+    "dev": "ts-node-dev ./src/index.ts --watch",
     "build": "tsc",
-    "pm2": "pm2 start ./dist/example.js"
+    "pm2": "pm2 start ./dist/index.js"
   },
   "dependencies": {
     "@xiaokyo/enterprise-wechat-app": "^1.0.3",
