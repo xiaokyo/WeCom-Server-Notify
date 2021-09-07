@@ -4,7 +4,8 @@
     "module": "commonjs",
     "outDir": "./dist",
     "resolveJsonModule": true,
-    "target": "esnext",
+    "target": "es5",
+    "sourceMap": false,
     "declaration": false
   },
   "include": [
