@@ -1,6 +1,6 @@
 {
   "name": "@xiaokyo/enterprise-message-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "main": "index.js",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "pm2": "pm2 start ./dist/index.js"
   },
   "dependencies": {
-    "@xiaokyo/enterprise-wechat-app": "^1.0.3",
+    "@xiaokyo/enterprise-wechat-app": "^1.0.4",
     "express": "^4.17.1",
     "redis": "^3.1.2",
     "uuid": "^8.3.2"
@@ -18,8 +18,8 @@
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/redis": "^2.8.31",
+    "@types/uuid": "^8.3.1",
     "ts-node": "^10.2.1",
-    "ts-node-dev": "^1.1.8",
-    "@types/uuid": "^8.3.1"
+    "ts-node-dev": "^1.1.8"
   }
 }
