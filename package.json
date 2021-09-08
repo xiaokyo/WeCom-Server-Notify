@@ -38,7 +38,8 @@
     "precommit": "lint-staged",
     "c": "git add . && git-cz",
     "commit-msg": "commitlint -e -V",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
+    "changelog": "lerna version --conventional-commits --yes"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

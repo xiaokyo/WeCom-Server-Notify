@@ -1,3 +1,7 @@
+/**
+ * @description 简单的两个配置文件替换
+ */
+
 import { getHomePath, readFileSync, writeFileSync } from '@/common'
 
 const start = () => {
