@@ -38,7 +38,7 @@
     "precommit": "lint-staged",
     "c": "git add . && git-cz",
     "commit-msg": "commitlint -e -V",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -51,5 +51,6 @@
     "commitizen": {
       "path": "./node_modules/cz-customizable"
     }
-  }
+  },
+  "version": "0.0.0"
 }
