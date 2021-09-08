@@ -21,6 +21,7 @@ export const writeFileSync = (filename, content) => {
   fs.writeFileSync(filename, content, { encoding: 'utf-8' })
 }
 
+/** 是否存在文件 */
 export const exitsFileSync = (filename: string) => {
   return fs.existsSync(filename)
 }
