@@ -5,6 +5,7 @@
     "moduleResolution": "node",
     "declaration": true,
     "noImplicitAny": false,
+    "resolveJsonModule": true,
     "removeComments": true,
     "jsx": "react",
     "noLib": false,
