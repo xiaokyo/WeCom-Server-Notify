@@ -14,7 +14,6 @@
     "@typescript-eslint/eslint-plugin": "^4.29.1",
     "@typescript-eslint/parser": "^4.29.1",
     "commitizen": "^4.2.4",
-    "conventional-changelog-cli": "^2.1.1",
     "cross-env": "^7.0.3",
     "cz-customizable": "^6.3.0",
     "eslint": "^7.32.0",
@@ -37,8 +36,7 @@
     "prepare": "husky install",
     "precommit": "lint-staged",
     "c": "git add . && git-cz",
-    "commit-msg": "commitlint -e -V",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
+    "commit-msg": "commitlint -e -V"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
