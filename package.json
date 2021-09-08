@@ -28,6 +28,7 @@
   },
   "scripts": {
     "release": "lerna publish patch --conventional-commits --yes",
+    "release:package": "lerna publish from-package --yes",
     "dev": "lerna run --stream --sort dev",
     "build": "lerna run --stream --sort build",
     "clean": "lerna clean --yes",
