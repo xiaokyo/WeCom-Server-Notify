@@ -35,10 +35,10 @@ yarn c
 ### 生成CHANGELOG.md
 
 ```
-yarn changelog
+yarn release
 ```
 
-会在项目根目录生成changelog.md文件, 存在的话会叠加, 使用commit记录来生成 
+发布npm包时会在项目根目录生成changelog.md文件, 存在的话会叠加, 使用commit记录来生成 
 
 > 注意: 要使用yarn c命令来提交填写提交信息的规范格式才可以生成好看的changelog
 
