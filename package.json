@@ -28,7 +28,7 @@
     "typescript": "^4.3.5"
   },
   "scripts": {
-    "release": "lerna version --conventional-commits && lerna publish from-package --yes",
+    "release": "lerna publish patch --conventional-commits --yes",
     "dev": "lerna run --stream --sort dev",
     "build": "lerna run --stream --sort build",
     "clean": "lerna clean --yes",
