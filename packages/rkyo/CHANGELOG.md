@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.9](https://github.com/xiaokyo/xiaokyo-packages/compare/@xiaokyo/rkyo@1.0.8...@xiaokyo/rkyo@1.0.9) (2021-09-08)
+
+
+### Bug Fixes
+
+* **root:** test release package ([3d3bcdd](https://github.com/xiaokyo/xiaokyo-packages/commit/3d3bcdd22594d0b992ba353513f52762dd32894d))
+
+
+
+
+
 ## [1.0.8](https://github.com/xiaokyo/xiaokyo-packages/compare/@xiaokyo/rkyo@1.0.7...@xiaokyo/rkyo@1.0.8) (2021-09-08)
 
 
