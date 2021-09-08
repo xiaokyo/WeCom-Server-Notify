@@ -3,13 +3,9 @@
   "compilerOptions": {
     "module": "commonjs",
     "outDir": "./dist",
-    "resolveJsonModule": true,
     "sourceMap": false,
-    "target": "esnext",
+    "target": "es5",
     "declaration": false,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [

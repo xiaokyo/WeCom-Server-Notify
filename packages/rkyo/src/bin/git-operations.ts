@@ -122,7 +122,7 @@ export default () => {
   return [
     {
       command: 'git-push',
-      description: 'git push 集成',
+      description: 'git push规范提交',
       action() {
         push()
       },
