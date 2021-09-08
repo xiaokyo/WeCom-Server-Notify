@@ -35,13 +35,13 @@
     "lint:fix": "eslint \"packages/**/*.+(ts|tsx)\" --fix",
     "prepare": "husky install",
     "precommit": "lint-staged",
-    "c": "git-cz",
+    "c": "git add . && git-cz",
     "commit-msg": "commitlint -e -V",
     "changelog": "lerna version patch --conventional-commits"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --ext .ts,tsx",
+      "eslint --ext .ts,tsx --fix",
       "prettier --write",
       "git add ."
     ]
