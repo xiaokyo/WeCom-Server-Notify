@@ -41,11 +41,12 @@ module.exports = {
     // 如果allowcustomscopes为true，则使用
     // customScope: 'Denote the SCOPE of this change:',
     subject: '简短描述:\n',
-    body: '详细描述. 使用"|"换行:\n',
-    breaking: 'Breaking Changes列表:\n',
-    footer: '关闭的issues列表. E.g.: #31, #34:\n',
+    // body: '详细描述. 使用"|"换行:\n',
+    // breaking: 'Breaking Changes列表:\n',
+    // footer: '关闭的issues列表. E.g.: #31, #34:\n',
     confirmCommit: '确认提交?',
   },
   allowCustomScopes: false,
   allowBreakingChanges: ['feat', 'fix'],
+  skipQuestions: ['body', 'breaking', 'footer'],
 }

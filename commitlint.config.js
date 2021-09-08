@@ -1,14 +1,4 @@
-const fs = require('fs')
-
-/**
- * 获取scopes
- * @returns scopes
- */
-function getScopeEnum() {
-  const dirs = fs.readdirSync('./packages') || []
-  dirs.unshift('root')
-  return dirs
-}
+const { scopes } = require('./.cz-config.js')
 
 module.exports = {
   extents: ['@commitlint/config-conventional'],
@@ -31,7 +21,7 @@ module.exports = {
         'test',
       ],
     ],
-    'scope-enum': [2, 'always', getScopeEnum()],
+    'scope-enum': [2, 'always', scopes],
     'scope-empty': [2, 'never'],
   },
 }
