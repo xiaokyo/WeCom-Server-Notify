@@ -1,5 +1,5 @@
 /**
- * @description 简单的两个配置文件替换(忽略--)
+ * @description 简单的两个配置文件替换(忽略)
  */
 
 import { getHomePath, readFileSync, writeFileSync } from '@/common'
