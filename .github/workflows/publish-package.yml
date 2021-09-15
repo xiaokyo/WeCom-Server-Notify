@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -24,9 +24,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         registry-url: 'https://registry.npmjs.org'
+    - run: echo "${{ secrets.NPMRC }}" > ~/.npmrc
     - run: npm install -g yarn --registry=https://registry.npm.taobao.org
     - run: yarn
     - run: yarn build
     - run: yarn release:package
-      env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
