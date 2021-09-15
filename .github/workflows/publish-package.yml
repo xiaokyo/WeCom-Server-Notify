@@ -25,7 +25,6 @@ jobs:
         cache: 'npm'
         registry-url: 'https://registry.npmjs.org'
     - run: echo "${{ secrets.NPMRC }}" > .npmrc
-    - run: echo ${{ secrets.NPMRC }}
     - run: npm install -g yarn --registry=https://registry.npm.taobao.org
     - run: yarn install --registry=https://registry.npm.taobao.org
     - run: yarn build
