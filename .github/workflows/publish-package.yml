@@ -25,6 +25,8 @@ jobs:
         cache: 'npm'
         registry-url: 'https://registry.npmjs.org'
     - run: echo "${{ secrets.NPMRC }}" > .npmrc
+    - run: git config --global user.email "you@example.com"
+    - run: git config --global user.name "Your Name"
     - run: git add .
     - run: git commit -m "fix(root):cachepublish"
     - run: npm install -g yarn --registry=https://registry.npm.taobao.org
