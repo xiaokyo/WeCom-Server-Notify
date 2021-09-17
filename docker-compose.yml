@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  enterprise-server:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs
+    container_name: enterprise-server
+    restart: always
+    depends_on: 
+      - enterprise_redis
+    links: 
+      - enterprise_redis:enterprise_redis
+    # ports:
+    #   - "3000:3000"
+    networks:                       # 加入指定网络
+      - app-network
+  enterprise_redis: 
+    image: redis:alpine
+    container_name: enterprise_redis
+    restart: always
+    hostname: enterprise_redis
+    command: redis-server /usr/local/etc/redis/redis.conf --requirepass 12345 --appendonly yes
+    volumes:
+      - ~/enterprise-redis/redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+volumes:
+  certbot-etc:
+  cerbot-var:
+
+networks: 
+  app-network:
+    driver: bridge

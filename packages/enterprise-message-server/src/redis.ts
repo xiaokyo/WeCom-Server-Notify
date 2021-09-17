@@ -1,5 +1,7 @@
 import redis from 'redis'
-const client = redis.createClient()
+const client = redis.createClient({
+  host: 'enterprise_redis',
+})
 
 client.on('error', function (error) {
   console.error(error)
