@@ -1,3 +1,7 @@
+/**
+ * @description git操作
+ */
+
 import prompts from 'prompts'
 import { execSync } from 'child_process'
 import chalk from 'chalk'
