@@ -30,6 +30,7 @@
     "release": "lerna publish patch --conventional-commits --yes",
     "release:minor": "lerna publish minor --conventional-commits --yes",
     "release:majoy": "lerna publish majoy --conventional-commits --yes",
+    "release:git":"lerna publish from-git --yes",
     "release:package": "lerna publish from-package --yes",
     "release:version": "lerna version --conventional-commits --yes",
     "dev": "lerna run --stream --sort dev",

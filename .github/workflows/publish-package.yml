@@ -32,4 +32,4 @@ jobs:
     - run: npm install -g yarn --registry=https://registry.npm.taobao.org
     - run: yarn install --registry=https://registry.npm.taobao.org
     - run: yarn build
-    - run: yarn release:package
+    - run: yarn release:git
