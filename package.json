@@ -27,7 +27,7 @@
     "typescript": "^4.3.5"
   },
   "scripts": {
-    "release": "lerna publish from-packages --yes",
+    "release": "lerna publish from-package --yes",
     "release:beta": "lerna publish --canary --preid beta --yes",
     "release:minor": "lerna publish minor --yes",
     "release:majoy": "lerna publish majoy --yes",
