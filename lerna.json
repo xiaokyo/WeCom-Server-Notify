@@ -10,7 +10,28 @@
       "ignoreChanges": [
         "*.md"
       ],
+      "message": "chore(root): publish",
+      "push": false,
+      "conventionalCommits": false
+    },
+    "version": {
+      "push": true,
+      "conventionalCommits": true,
+      "allowBranch": "master",
       "message": "chore(root): publish"
+    },
+    "changelogPreset": {
+      "name": "conventionalcommits",
+      "types": [
+        {
+          "type": "feat",
+          "section": ":sparkles: Features"
+        },
+        {
+          "type": "fix",
+          "section": ":bug: Bug Fixes"
+        }
+      ]
     }
   }
 }

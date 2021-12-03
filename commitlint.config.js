@@ -1,4 +1,5 @@
-const { scopes } = require('./.cz-config.js')
+const { scopes, types } = require('./.cz-config.js')
+const commitPrefixs = types.map(_ => _.value)
 
 module.exports = {
   extents: ['@commitlint/config-conventional'],
@@ -6,20 +7,7 @@ module.exports = {
     'type-enum': [
       2,
       'always',
-      [
-        'build',
-        'chore',
-        'ci',
-        'docs',
-        'feat',
-        'fix',
-        'improvement',
-        'perf',
-        'refactor',
-        'revert',
-        'style',
-        'test',
-      ],
+      commitPrefixs,
     ],
     'scope-enum': [2, 'always', scopes],
     'scope-empty': [2, 'never'],
