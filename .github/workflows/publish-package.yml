@@ -4,8 +4,6 @@
 name: Publish package to NPM
 
 on:
-  push: 
-    master
   workflow_dispatch:
 
 jobs:
