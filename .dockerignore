@@ -1,9 +1,0 @@
-node_modules
-.github
-.husky
-.cz-config.js
-.eslintignore
-.eslintrc.js
-.npmrc
-.prettierrc.js
-commitlint.config.js

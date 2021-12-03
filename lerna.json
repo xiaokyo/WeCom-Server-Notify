@@ -11,7 +11,28 @@
         "*.md",
         "enterprise-message-server"
       ],
+      "message": "chore(root): publish",
+      "conventionalCommits": false,
+      "push": false
+    },
+    "version": {
+      "push": true,
+      "conventionalCommits": true,
+      "allowBranch": "master",
       "message": "chore(root): publish"
+    },
+    "changelogPreset": {
+      "name": "conventionalcommits",
+      "types": [
+        {
+          "type": "feat",
+          "section": ":sparkles: Features"
+        },
+        {
+          "type": "fix",
+          "section": ":bug: Bug Fixes"
+        }
+      ]
     }
   }
 }

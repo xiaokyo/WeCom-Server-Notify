@@ -1,5 +1,5 @@
 /**
- * @description git操作
+ * @description git操作 release
  */
 
 import prompts from 'prompts'

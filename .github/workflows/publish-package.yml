@@ -4,6 +4,8 @@
 name: Publish package to NPM
 
 on:
+  push: 
+    master
   workflow_dispatch:
 
 jobs:
@@ -26,9 +28,7 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
     - run: echo "${{ secrets.NPMRC }}" > .npmrc
     - run: git config --global user.email "you@example.com"
-    - run: git config --global user.name "Your Name"
-    - run: git add .
-    - run: git commit -m "fix(root):cachepublish"
+    - run: git config --global user.name "xiaokyo"
     - run: yarn install --registry=https://registry.npm.taobao.org
     - run: yarn build
-    - run: yarn release:git
+    - run: yarn release

@@ -12,3 +12,5 @@ node_modules
 *.log
 
 wechat.config.ts
+
+.npmrc
