@@ -27,4 +27,4 @@ jobs:
     - run: echo "${{ secrets.NPMRC }}" > .npmrc
     - run: yarn install --registry=https://registry.npm.taobao.org
     - run: yarn build
-    - run: yarn release
+    - run: yarn release:package

@@ -12,8 +12,8 @@
         "enterprise-message-server"
       ],
       "message": "chore(root): publish",
-      "conventionalCommits": false,
-      "push": false
+      "push": false,
+      "conventionalCommits": false
     },
     "version": {
       "push": true,

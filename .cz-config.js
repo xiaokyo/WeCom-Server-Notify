@@ -14,10 +14,12 @@ function getScopeEnum() {
   dirs.unshift('root')
   return dirs
 }
-exports.getScopeEnum = getScopeEnum
 
-module.exports = {
-  types: [
+/**
+ * 获取提交message的前缀
+ */
+function getCommitPrefix() {
+  return [
     { value: 'init', name: 'init:     初始提交' },
     { value: 'feat', name: 'feat:     增加新功能' },
     { value: 'fix', name: 'fix:      修复bug' },
@@ -33,7 +35,11 @@ module.exports = {
     { value: 'add', name: 'add:      添加依赖' },
     { value: 'minus', name: 'minus:    版本回退' },
     { value: 'del', name: 'del:      删除代码/文件' },
-  ],
+  ]
+}
+
+module.exports = {
+  types: getCommitPrefix(),
   scopes: getScopeEnum(),
   messages: {
     type: '选择更改类型:\n',

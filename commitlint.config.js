@@ -1,14 +1,5 @@
-const fs = require('fs')
-
-/**
- * 获取scopes
- * @returns scopes
- */
-function getScopeEnum() {
-  const dirs = fs.readdirSync('./packages') || []
-  dirs.unshift('root')
-  return dirs
-}
+const { scopes, types } = require('./.cz-config.js')
+const commitPrefixs = types.map(_ => _.value)
 
 module.exports = {
   extents: ['@commitlint/config-conventional'],
@@ -16,27 +7,9 @@ module.exports = {
     'type-enum': [
       2,
       'always',
-      [
-        'init',
-        'build',
-        'chore',
-        'ci',
-        'docs',
-        'del',
-        'minus',
-        'feat',
-        'fix',
-        'improvement',
-        'perf',
-        'deploy',
-        'release',
-        'refactor',
-        'revert',
-        'style',
-        'test',
-      ],
+      commitPrefixs,
     ],
-    'scope-enum': [2, 'always', getScopeEnum()],
+    'scope-enum': [2, 'always', scopes],
     'scope-empty': [2, 'never'],
   },
 }
