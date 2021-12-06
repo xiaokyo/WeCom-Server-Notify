@@ -32,7 +32,7 @@
     "release:majoy":"lerna publish majoy --yes",
     "release:beta": "lerna publish --canary --preid beta --yes",
     "release:package": "lerna publish from-package --yes",
-    "release:version": "git pull && lerna version --yes",
+    "release:version": "git pull && lerna version patch --yes",
     "dev": "lerna run --stream --sort dev",
     "build": "lerna run --stream --sort build",
     "clean": "lerna clean --yes",
