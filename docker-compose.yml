@@ -20,7 +20,7 @@ services:
     volumes:
       - ./:/enterprise # 项目文件映射
       - node_modules:/enterprise/node_modules # 单独处理 node_modules
-    restart: always
+    # restart: always
     depends_on:
       # - mongo
       - redis
@@ -35,6 +35,6 @@ services:
       - 6379:6379
     volumes:
       - ~/redis/data:/data
-    restart: always
+    # restart: always
     networks:
       - my-network
