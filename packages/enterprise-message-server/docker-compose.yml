@@ -1,0 +1,56 @@
+version: "3"
+
+networks:
+  # 自定义网络
+  my-network:
+    # 网络名字
+    driver: bridge # 由网关驱动
+# volumes:
+#   node_modules:
+
+services:
+  # 定义每个服务的容器
+
+  ### node ##############
+  nodejs:
+    build:
+      context: ./ # 构建 node 目录
+    ports:
+      - 127.0.0.1:3000:3000 # 映射 3000
+    volumes:
+      - ./src:/enterprise/src # 项目文件映射
+      # - ./node_modules:/enterprise/node_modules # 单独处理 node_modules
+      # restart: always
+    depends_on:
+      # - mongo
+      - redis
+    networks:
+      - my-network
+
+  ### redis #####################
+  redis:
+    build:
+      context: ./docker/redis
+    ports:
+      - 127.0.0.1:6379:6379
+    volumes:
+      - ~/redis/data:/data
+    # restart: always
+    networks:
+      - my-network
+
+  ### nginx #######################
+  nginx:
+    # build:
+    #   context: ./docker/nginx
+    image: nginx:alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/cert:/etc/nginx/cert
+      - ./docker/nginx/logs:/var/log/nginx
+    depends_on:         # 定义容器启动顺序 附带容器间的依赖关系
+      - nodejs
+    networks:
+      - my-network

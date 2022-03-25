@@ -1,6 +1,14 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "jsx": "react",
+    "noLib": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "module": "commonjs",
     "outDir": "./dist",
     "resolveJsonModule": true,
@@ -11,5 +19,8 @@
   "include": [
     "./src",
     "./typing.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
   ]
 }
