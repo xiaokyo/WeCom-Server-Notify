@@ -5,6 +5,8 @@ networks:
   my-network:
     # 网络名字
     driver: bridge # 由网关驱动
+volumes:
+  node_modules:
 
 services:
   # 定义每个服务的容器
@@ -17,7 +19,7 @@ services:
       - 3000:3000 # 映射 3000
     volumes:
       - ./:/enterprise # 项目文件映射
-      - ./node_modules:/node_modules # 单独处理 node_modules
+      - node_modules:/enterprise/node_modules # 单独处理 node_modules
     restart: always
     depends_on:
       # - mongo
