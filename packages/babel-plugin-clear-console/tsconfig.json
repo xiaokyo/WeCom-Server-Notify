@@ -1,0 +1,15 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "module": "commonjs",
+        "outDir": "./dist",
+        "resolveJsonModule": true,
+        "target": "es5",
+        "sourceMap": false,
+        "declaration": false
+    },
+    "include": [
+        "./src",
+        "./typing.d.ts"
+    ]
+}
