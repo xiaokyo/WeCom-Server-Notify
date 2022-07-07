@@ -43,7 +43,7 @@ const push = async () => {
   const { commitMessage, emoji, force } = input
 
   // 不满足条件不操作
-  if (!commitMessage && !emoji) return
+  if (!commitMessage && !emoji && emoji === 'undefined') return
 
   try {
     execSync('git add .')
