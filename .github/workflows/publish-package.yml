@@ -24,7 +24,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         registry-url: 'https://registry.npmjs.org'
-    - run: echo "${{ secrets.NPMRC }}" > .npmrc
+    # - run: echo "${{ secrets.NPMRC }}" > .npmrc
     - run: yarn install --registry=https://registry.npm.taobao.org
     - run: yarn build
     - run: yarn release:package
