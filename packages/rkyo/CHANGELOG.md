@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/xiaokyo/xiaokyo-packages/compare/@xiaokyo/rkyo@1.2.1...@xiaokyo/rkyo@1.2.3) (2022-07-12)
+
+
+### Bug Fixes
+
+* **rkyo:** emoji为空的时候 ([0dc5852](https://github.com/xiaokyo/xiaokyo-packages/commit/0dc58525082477952df4c33805fe39c3d2ee4764))
+
+
+### Features
+
+* **rkyo:** 添加表情 ([6c2e0bf](https://github.com/xiaokyo/xiaokyo-packages/commit/6c2e0bfa6d03c45b7b65586bff48cf8adad23906))
+* **water-mark-clean:** 抖音去水印 ([7b5d329](https://github.com/xiaokyo/xiaokyo-packages/commit/7b5d3297d7a88c8338308604b1f78ee1c1c54684))
+
+
+
+
+
 ## [1.2.1](https://github.com/xiaokyo/xiaokyo-packages/compare/@xiaokyo/rkyo@1.2.0...@xiaokyo/rkyo@1.2.1) (2021-12-03)
 
 **Note:** Version bump only for package @xiaokyo/rkyo
