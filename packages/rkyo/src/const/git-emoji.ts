@@ -15,6 +15,11 @@ export default [
     icon: '✨',
   },
   {
+    desc: '删除代码',
+    code: ':fire:',
+    icon: '🔥',
+  },
+  {
     desc: '写文档',
     code: ':memo:',
     icon: '📝',
@@ -33,5 +38,10 @@ export default [
     desc: '改进代码结构/格式',
     code: ':art:',
     icon: '🎨',
+  },
+  {
+    desc: '部署',
+    code: ':rocket:',
+    icon: '🚀',
   },
 ]

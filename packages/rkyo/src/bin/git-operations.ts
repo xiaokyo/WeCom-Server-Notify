@@ -3,7 +3,7 @@
  */
 
 import prompts from 'prompts'
-import { execSync } from 'child_process'
+import { execSync, exec } from 'child_process'
 import chalk from 'chalk'
 import gitEmoji from '@/const/git-emoji'
 import path from 'path'
@@ -85,6 +85,42 @@ const delMergeBranch = mainBranchName => {
   }
 }
 
+const lookBranchsDesc = (branch = '', desc = '') => {
+  const branchs = execSync('git branch')
+    .toString()
+    .replace(/\*/gm, '')
+    .split(/\n/)
+    .map(_ => _.trim())
+    .filter(_ => _)
+
+  const maxLen = branchs.reduce((max, cur) => {
+    if (max < cur.length) return cur.length
+    return max
+  }, 0)
+
+  if (desc !== '') {
+    // 增加描述
+    let currentBranchName = getCurrentBranch()
+    if (branch !== '') {
+      currentBranchName = branch
+    }
+    execSync(`git config branch.${currentBranchName}.description ${desc}`)
+  } else {
+    branchs.forEach(_ => {
+      try {
+        const spaceLen = maxLen - _.length + 1
+        // 生成spaceLen个空格字符
+        const space = new Array(spaceLen).fill(' ').join('')
+        exec(`git config branch.${_}.description`, (err, stdout, stderr) => {
+          console.log(`${_}${space}${stdout ? '-- ' + stdout.trim().replace(/\r\n/g, '') : ''}`)
+        })
+      } catch (e) {
+        console.error(`错误了: ${_}`, e)
+      }
+    })
+  }
+}
+
 /**
  * new tag and push
  * @returns void
@@ -143,6 +179,13 @@ export default () => {
       description: '新建一个tag, package.json patch递增, 并提交到远程',
       action() {
         newTagPush()
+      },
+    },
+    {
+      command: 'git-desc [branch] [desc]',
+      description: '查看分支的描述集合',
+      action(branch = '', desc = '') {
+        lookBranchsDesc(branch, desc)
       },
     },
   ]
