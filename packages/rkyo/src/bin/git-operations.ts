@@ -35,7 +35,8 @@ const promptsConfig = [
 const getCurrentBranch = () =>
   execSync('git rev-parse --abbrev-ref HEAD').toString().replace(/\s+/, '')
 
-const push = async () => {
+const push = async (skip = false) => {
+  if (skip) return pushBranch()
   const input = await prompts(promptsConfig)
   // 获取当前分支名
   const currentBranchName = getCurrentBranch()
@@ -121,6 +122,25 @@ const lookBranchsDesc = (branch = '', desc = '') => {
   }
 }
 
+const pushBranch = () => {
+  const currentBranchName = getCurrentBranch()
+  exec(`git push origin ${currentBranchName}`, function (err, stdout, stderr) {
+    if (err) {
+      console.log(chalk.red(err || stderr))
+    } else {
+      console.log(chalk.green(stdout))
+    }
+  })
+}
+
+const pullBranch = rebase => {
+  const currentBranchName = getCurrentBranch()
+  const pullCmd = rebase
+    ? `git pull -r origin ${currentBranchName}`
+    : `git pull origin ${currentBranchName}`
+  exec(pullCmd)
+}
+
 /**
  * new tag and push
  * @returns void
@@ -161,10 +181,10 @@ const newTagPush = () => {
 export default () => {
   return [
     {
-      command: 'git-push',
+      command: 'git-push [skip]',
       description: 'git push规范提交',
-      action() {
-        push()
+      action(skip) {
+        push(!!skip)
       },
     },
     {
@@ -186,6 +206,13 @@ export default () => {
       description: '查看分支的描述集合',
       action(branch = '', desc = '') {
         lookBranchsDesc(branch, desc)
+      },
+    },
+    {
+      command: 'git-pull [rebase]',
+      description: '拉取分支',
+      action(rebase = false) {
+        pullBranch(rebase)
       },
     },
   ]
