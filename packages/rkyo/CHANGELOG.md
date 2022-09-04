@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/xiaokyo/xiaokyo-packages/compare/@xiaokyo/rkyo@1.2.3...@xiaokyo/rkyo@1.2.4) (2022-09-04)
+
+
+### Bug Fixes
+
+* **rkyo:** 未选择表情不提交 ([df66d6b](https://github.com/xiaokyo/xiaokyo-packages/commit/df66d6bfd4e8002da6811c4e0e5ffeff7f058777))
+
+
+### Features
+
+* **rkyo:** pull, push ([aa43379](https://github.com/xiaokyo/xiaokyo-packages/commit/aa43379521e30e79ef2c1a5045c4ed098de3b21e))
+
+
+
+
+
 ## [1.2.3](https://github.com/xiaokyo/xiaokyo-packages/compare/@xiaokyo/rkyo@1.2.1...@xiaokyo/rkyo@1.2.3) (2022-07-12)
 
 
