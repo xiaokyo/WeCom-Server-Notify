@@ -41,7 +41,8 @@
     "prepare": "husky install",
     "precommit": "lint-staged",
     "c": "git add . && git-cz",
-    "commit-msg": "commitlint -e -V"
+    "commit-msg": "commitlint -e -V",
+    "server": "yarn workspace @xiaokyo/enterprise-message-server run start"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

@@ -1,11 +1,41 @@
-import redis from 'redis'
-const client = redis.createClient({
-  host: 'redis',
-})
+// import redis from 'redis'
+// const client = redis.createClient({
+//   host: 'redis',
+// })
 
-client.on('error', function (error) {
-  console.error(error)
-})
+// client.on('error', function (error) {
+//   console.error(error)
+// })
+
+import fs from 'fs'
+
+const redisPath = './redis'
+
+const client = {
+  set(key: string, value: string) {
+    // 如果文件夹不存在，创建文件夹
+    if (!fs.existsSync(redisPath)) {
+      fs.mkdirSync(redisPath)
+    }
+    fs.writeFileSync(`${redisPath}/${key}.txt`, value, { encoding: 'utf-8' })
+  },
+  expire(key: string, expires: number) {},
+  get(key: string, callback: (err: any, reply: string) => void) {
+    fs.readFile(`${redisPath}/${key}.txt`, { encoding: 'utf-8' }, (err, data) => {
+      callback(err, data)
+    })
+  },
+  // 用fs.access来实现是否存在
+  exists(key: string, callback: (err: any, number: number) => void) {
+    fs.access(`${redisPath}/${key}.txt`, err => {
+      callback(err, err ? 0 : 1)
+    })
+  },
+  // 删除
+  del(key: string) {
+    fs.unlinkSync(`${redisPath}/${key}.txt`)
+  },
+}
 
 /**
  * 设置一个键值对

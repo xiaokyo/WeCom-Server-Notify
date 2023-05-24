@@ -16,3 +16,5 @@ wechat.config.ts
 .npmrc
 
 logs
+
+packages/enterprise-message-server/redis
