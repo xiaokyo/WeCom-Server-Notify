@@ -11,8 +11,10 @@
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
+    "@now/node": "^1.8.5",
     "@typescript-eslint/eslint-plugin": "^4.29.1",
     "@typescript-eslint/parser": "^4.29.1",
+    "@vercel/node": "^2.14.3",
     "commitizen": "^4.2.4",
     "cross-env": "^7.0.3",
     "cz-customizable": "^6.3.0",
@@ -28,8 +30,8 @@
   },
   "scripts": {
     "release": "lerna publish patch --yes",
-    "release:minor":"lerna publish minor --yes",
-    "release:majoy":"lerna publish majoy --yes",
+    "release:minor": "lerna publish minor --yes",
+    "release:majoy": "lerna publish majoy --yes",
     "release:beta": "lerna publish --canary --preid beta --yes",
     "release:package": "lerna publish from-package --yes",
     "release:version": "git pull && lerna version patch --yes",
@@ -41,8 +43,7 @@
     "prepare": "husky install",
     "precommit": "lint-staged",
     "c": "git add . && git-cz",
-    "commit-msg": "commitlint -e -V",
-    "server": "yarn workspace @xiaokyo/enterprise-message-server run start"
+    "commit-msg": "commitlint -e -V"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

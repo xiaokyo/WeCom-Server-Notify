@@ -63,11 +63,11 @@ app.post('/enterprise/sendTextCard', async function (req, res) {
   }
 })
 
-app.get('/test', async function (req, res) {
+app.get('/', async function (req, res) {
   res.send('enterprise start done')
 })
 
-app.listen(3000)
+app.listen(4000)
 
 // wc.sendText(config.token, `you can do anything`).then(res => {
 //   console.log(res)

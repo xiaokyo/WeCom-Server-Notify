@@ -18,3 +18,4 @@ wechat.config.ts
 logs
 
 packages/enterprise-message-server/redis
+.vercel

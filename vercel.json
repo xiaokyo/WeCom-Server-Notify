@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "public": true,
+    "builds": [
+        {
+            "src": "/packages/enterprise-message-server/src/index.ts",
+            "use": "@now/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/packages/enterprise-message-server/src/index.ts"
+        }
+    ]
+}
