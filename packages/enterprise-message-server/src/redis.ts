@@ -9,7 +9,7 @@
 
 import fs from 'fs'
 
-const redisPath = '/tmp/redis'
+const redisPath = '/tmp/'
 
 const client = {
   set(key: string, value: string) {
