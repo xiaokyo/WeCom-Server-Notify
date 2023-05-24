@@ -23,7 +23,7 @@ app.get('/enterprise/getSecret', async (req, res) => {
     const token = await vaildToken(options)
     if (token) {
       const uid = uuidv4()
-      setEnterprise(uid, options)
+      setEnterprise(uid, { ...options, token })
       setEnterprise(pswd, uid)
       res.send(uid)
     }

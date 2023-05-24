@@ -102,7 +102,7 @@ app.get('/enterprise/getSecret', function (req, res) { return __awaiter(void 0, 
                 token = _d.sent();
                 if (token) {
                     uid = uuid_1.v4();
-                    enterprise_info_1.setEnterprise(uid, options);
+                    enterprise_info_1.setEnterprise(uid, __assign(__assign({}, options), { token: token }));
                     enterprise_info_1.setEnterprise(pswd, uid);
                     res.send(uid);
                 }
