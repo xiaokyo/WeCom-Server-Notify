@@ -7,33 +7,24 @@
 //   console.error(error)
 // })
 
-import fs from 'fs'
-
-const redisPath = '/tmp/'
+const redisObj = {}
 
 const client = {
   set(key: string, value: string) {
     // 如果文件夹不存在，创建文件夹
-    if (!fs.existsSync(redisPath)) {
-      fs.mkdirSync(redisPath)
-    }
-    fs.writeFileSync(`${redisPath}/${key}.txt`, value, { encoding: 'utf-8' })
+    redisObj[key] = value
   },
   expire(key: string, expires: number) {},
   get(key: string, callback: (err: any, reply: string) => void) {
-    fs.readFile(`${redisPath}/${key}.txt`, { encoding: 'utf-8' }, (err, data) => {
-      callback(err, data)
-    })
+    callback(null, redisObj[key])
   },
   // 用fs.access来实现是否存在
   exists(key: string, callback: (err: any, number: number) => void) {
-    fs.access(`${redisPath}/${key}.txt`, err => {
-      callback(err, err ? 0 : 1)
-    })
+    callback(null, !redisObj[key] ? 0 : 1)
   },
   // 删除
   del(key: string) {
-    fs.unlinkSync(`${redisPath}/${key}.txt`)
+    delete redisObj[key]
   },
 }
 
