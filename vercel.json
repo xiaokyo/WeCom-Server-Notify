@@ -3,14 +3,14 @@
     "public": true,
     "builds": [
         {
-            "src": "/packages/enterprise-message-server/src/index.ts",
+            "src": "/packages/enterprise-message-server/dist/index.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/packages/enterprise-message-server/src/index.ts"
+            "dest": "/packages/enterprise-message-server/dist/index.js"
         }
     ]
 }
