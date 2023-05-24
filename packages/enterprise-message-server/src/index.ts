@@ -11,17 +11,20 @@ app.use(express.urlencoded({ extended: true }))
 
 app.get('/enterprise/getSecret', async (req, res) => {
   try {
-    const { phone, ...options }: WechatConfig & any = req.query as any
-    if (!phone) throw new Error('phone is required')
-    if (await existsEnterprise(phone)) {
-      res.send(await getEnterprise(phone))
+    const { pswd }: WechatConfig & any = req.query as any
+    const { CORP_ID: corpid, CORP_SECRET: corpsecret, AGENT_ID: agentId, PSWD } = process.env
+    const options = { corpid, corpsecret, agentId }
+    if (!pswd) throw new Error('pswd is required')
+    if (pswd !== PSWD) throw new Error('pswd is error')
+    if (await existsEnterprise(pswd)) {
+      res.send(await getEnterprise(pswd))
       return
     }
     const token = await vaildToken(options)
     if (token) {
       const uid = uuidv4()
       setEnterprise(uid, options)
-      setEnterprise(phone, uid)
+      setEnterprise(pswd, uid)
       res.send(uid)
     }
   } catch (err) {

@@ -65,17 +65,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -88,19 +77,23 @@ var app = express_1.default();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.get('/enterprise/getSecret', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, phone, options, _b, _c, token, uid, err_1;
+    var pswd, _a, corpid, corpsecret, agentId, PSWD, options, _b, _c, token, uid, err_1;
     return __generator(this, function (_d) {
         switch (_d.label) {
             case 0:
                 _d.trys.push([0, 5, , 6]);
-                _a = req.query, phone = _a.phone, options = __rest(_a, ["phone"]);
-                if (!phone)
-                    throw new Error('phone is required');
-                return [4, enterprise_info_1.existsEnterprise(phone)];
+                pswd = req.query.pswd;
+                _a = process.env, corpid = _a.CORP_ID, corpsecret = _a.CORP_SECRET, agentId = _a.AGENT_ID, PSWD = _a.PSWD;
+                options = { corpid: corpid, corpsecret: corpsecret, agentId: agentId };
+                if (!pswd)
+                    throw new Error('pswd is required');
+                if (pswd !== PSWD)
+                    throw new Error('pswd is error');
+                return [4, enterprise_info_1.existsEnterprise(pswd)];
             case 1:
                 if (!_d.sent()) return [3, 3];
                 _c = (_b = res).send;
-                return [4, enterprise_info_1.getEnterprise(phone)];
+                return [4, enterprise_info_1.getEnterprise(pswd)];
             case 2:
                 _c.apply(_b, [_d.sent()]);
                 return [2];
@@ -110,7 +103,7 @@ app.get('/enterprise/getSecret', function (req, res) { return __awaiter(void 0, 
                 if (token) {
                     uid = uuid_1.v4();
                     enterprise_info_1.setEnterprise(uid, options);
-                    enterprise_info_1.setEnterprise(phone, uid);
+                    enterprise_info_1.setEnterprise(pswd, uid);
                     res.send(uid);
                 }
                 return [3, 6];
