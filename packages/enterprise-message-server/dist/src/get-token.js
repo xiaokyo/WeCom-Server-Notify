@@ -42,31 +42,37 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.vaildToken = void 0;
 var enterprise_wechat_app_1 = __importDefault(require("@xiaokyo/enterprise-wechat-app"));
 var enterprise_info_1 = require("./common/enterprise-info");
+var get_envs_1 = __importDefault(require("./common/get-envs"));
 var getWechatToken = function (secret) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, corpid, corpsecret, agentId, token, wc, tokenRes;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var envs, token, corpid, corpsecret, agentId, wc, tokenRes;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
                 if (!secret)
                     throw new Error('secret is required.');
-                return [4, enterprise_info_1.getEnterprise(secret, true)];
+                return [4, get_envs_1.default()];
             case 1:
-                _a = _b.sent(), corpid = _a.corpid, corpsecret = _a.corpsecret, agentId = _a.agentId, token = _a.token;
-                wc = new enterprise_wechat_app_1.default({ corpid: "" + corpid, corpsecret: "" + corpsecret, agentId: "" + agentId });
-                if (!corpid || !corpsecret || !agentId)
-                    throw new Error('params invaild');
-                if (!!token) return [3, 3];
-                return [4, wc.getToken()];
+                envs = _a.sent();
+                if (secret !== envs.PSWD)
+                    throw new Error('secret is error');
+                return [4, enterprise_info_1.getEnterprise(secret, true)];
             case 2:
-                tokenRes = _b.sent();
+                token = (_a.sent()).token;
+                corpid = envs.CORP_ID, corpsecret = envs.CORP_SECRET, agentId = envs.AGENT_ID;
+                wc = new enterprise_wechat_app_1.default({ corpid: "" + corpid, corpsecret: "" + corpsecret, agentId: "" + agentId });
+                if (!!token) return [3, 4];
+                return [4, wc.getToken()];
+            case 3:
+                tokenRes = _a.sent();
                 if (!tokenRes || (tokenRes && tokenRes.errcode !== 0)) {
                     throw new Error('get token faild');
                 }
                 if (tokenRes && tokenRes.access_token) {
-                    enterprise_info_1.setEnterprise(secret, { corpid: corpid, corpsecret: corpsecret, agentId: agentId, token: tokenRes.access_token });
+                    enterprise_info_1.setEnterprise(secret, { token: tokenRes.access_token });
+                    token = tokenRes.access_token;
                 }
-                _b.label = 3;
-            case 3:
+                _a.label = 4;
+            case 4:
                 if (!token)
                     throw new Error('no token');
                 return [2, wc];

@@ -1,12 +1,14 @@
 import wechat, { WechatConfig } from '@xiaokyo/enterprise-wechat-app'
 import { getEnterprise, setEnterprise } from './common/enterprise-info'
+import getEnvs from './common/get-envs'
 
 const getWechatToken = async (secret: string): Promise<wechat> => {
   if (!secret) throw new Error('secret is required.')
-  const { corpid, corpsecret, agentId, token } = await getEnterprise(secret, true)
+  const envs = await getEnvs()
+  if (secret !== envs.PSWD) throw new Error('secret is error')
+  let { token } = await getEnterprise(secret, true)
+  const { CORP_ID: corpid, CORP_SECRET: corpsecret, AGENT_ID: agentId } = envs
   const wc = new wechat({ corpid: `${corpid}`, corpsecret: `${corpsecret}`, agentId: `${agentId}` })
-  if (!corpid || !corpsecret || !agentId) throw new Error('params invaild')
-
   if (!token) {
     const tokenRes = await wc.getToken()
     if (!tokenRes || (tokenRes && tokenRes.errcode !== 0)) {
@@ -15,7 +17,8 @@ const getWechatToken = async (secret: string): Promise<wechat> => {
     }
 
     if (tokenRes && tokenRes.access_token) {
-      setEnterprise(secret, { corpid, corpsecret, agentId, token: tokenRes.access_token })
+      setEnterprise(secret, { token: tokenRes.access_token })
+      token = tokenRes.access_token
     }
   }
 

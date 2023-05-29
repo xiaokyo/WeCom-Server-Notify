@@ -133,7 +133,7 @@ app.get('/enterprise/sendText', function (req, res) { return __awaiter(void 0, v
                 return [4, wc.getToken()];
             case 3:
                 token = (_d.sent()).access_token;
-                enterprise_info_1.setEnterprise(secret, __assign(__assign({}, wc.config), { token: token }));
+                enterprise_info_1.setEnterprise(secret, { token: token });
                 return [4, wc.sendText("" + content)];
             case 4:
                 sendRes = _d.sent();

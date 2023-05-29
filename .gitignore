@@ -11,7 +11,7 @@ node_modules
 
 *.log
 
-wechat.config.ts
+wechat.config.*
 
 .npmrc
 
@@ -19,3 +19,5 @@ logs
 
 packages/enterprise-message-server/redis
 .vercel
+
+env.*

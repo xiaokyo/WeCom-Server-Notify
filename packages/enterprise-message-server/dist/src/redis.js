@@ -1,20 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.redisClean = exports.redisExists = exports.redisGet = exports.redisSet = void 0;
-var redisObj = {};
+global.redisObj = {};
 var client = {
     set: function (key, value) {
-        redisObj[key] = value;
+        global.redisObj[key] = value;
     },
     expire: function (key, expires) { },
     get: function (key, callback) {
-        callback(null, redisObj[key]);
+        callback(null, global.redisObj[key]);
     },
     exists: function (key, callback) {
-        callback(null, !redisObj[key] ? 0 : 1);
+        callback(null, !global.redisObj[key] ? 0 : 1);
     },
     del: function (key) {
-        delete redisObj[key];
+        delete global.redisObj[key];
     },
 };
 function redisSet(key, value, expires) {

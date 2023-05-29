@@ -40,7 +40,7 @@ app.get('/enterprise/sendText', async (req, res) => {
     let sendRes = await wc.sendText(`${content}`)
     if (sendRes && sendRes.errcode === 40014) {
       const { access_token: token }: any = await wc.getToken()
-      setEnterprise(secret, { ...wc.config, token })
+      setEnterprise(secret, { token })
       sendRes = await wc.sendText(`${content}`)
     }
     res.send(sendRes)
