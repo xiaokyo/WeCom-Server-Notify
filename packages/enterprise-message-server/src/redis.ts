@@ -7,24 +7,24 @@
 //   console.error(error)
 // })
 
-const redisObj = {}
+global.redisObj = {}
 
 const client = {
   set(key: string, value: string) {
     // 如果文件夹不存在，创建文件夹
-    redisObj[key] = value
+    global.redisObj[key] = value
   },
   expire(key: string, expires: number) {},
   get(key: string, callback: (err: any, reply: string) => void) {
-    callback(null, redisObj[key])
+    callback(null, global.redisObj[key])
   },
   // 用fs.access来实现是否存在
   exists(key: string, callback: (err: any, number: number) => void) {
-    callback(null, !redisObj[key] ? 0 : 1)
+    callback(null, !global.redisObj[key] ? 0 : 1)
   },
   // 删除
   del(key: string) {
-    delete redisObj[key]
+    delete global.redisObj[key]
   },
 }
 
