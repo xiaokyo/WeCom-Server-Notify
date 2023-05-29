@@ -5,7 +5,9 @@
  - CORP_ID
  - CORP_SECRET
 
+注意, 下面的教程看到第五部即可(包括第五部, 然后回到本项目, 点击一键部署即可)
 [企业微信申请教程](https://github.com/easychen/wecomchan#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C)
+
 
 还要自己定义一个PSWD环境变量
 
