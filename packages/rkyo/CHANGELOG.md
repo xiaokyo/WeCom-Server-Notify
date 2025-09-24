@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.6](https://github.com/xiaokyo/xiaokyo-packages/compare/@xiaokyo/rkyo@1.2.4...@xiaokyo/rkyo@1.2.6) (2025-09-24)
+
+
+### Features
+
+* **rkyo:** add release branch problem ([70dd3ca](https://github.com/xiaokyo/xiaokyo-packages/commit/70dd3caef3718619109cacac318ac2a1665234bd))
+
+
+
+
+
 ## [1.2.4](https://github.com/xiaokyo/xiaokyo-packages/compare/@xiaokyo/rkyo@1.2.3...@xiaokyo/rkyo@1.2.4) (2022-09-04)
 
 

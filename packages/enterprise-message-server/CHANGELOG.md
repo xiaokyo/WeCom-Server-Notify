@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/xiaokyo/xiaokyo-packages/compare/@xiaokyo/enterprise-message-server@1.1.1...@xiaokyo/enterprise-message-server@1.1.2) (2025-09-24)
+
+
+### Bug Fixes
+
+* **enterprise-message-server:** 改为全局变量 ([50b0b9a](https://github.com/xiaokyo/xiaokyo-packages/commit/50b0b9a70a1476744fc3dcfd5a7ae44e80afe5e4))
+* **root:** 换一个写的地方 ([c3d700f](https://github.com/xiaokyo/xiaokyo-packages/commit/c3d700fef9b68e3a27342ea57377b50ced9f7f12))
+
+
+
+
+
 ## [1.1.1](https://github.com/xiaokyo/xiaokyo-packages/compare/@xiaokyo/enterprise-message-server@1.1.0...@xiaokyo/enterprise-message-server@1.1.1) (2022-07-12)
 
 
