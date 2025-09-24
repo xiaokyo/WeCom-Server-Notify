@@ -104,6 +104,7 @@ var delMergeBranch = function (mainBranchName) {
             .toString()
             .replace(/\*/gm, '')
             .replace(/master/, '')
+            .replace(/release/, '')
             .split(/\n/)
             .map(function (_) { return _.trim(); })
             .filter(function (_) { return _; });
@@ -112,7 +113,7 @@ var delMergeBranch = function (mainBranchName) {
             throw new Error('no merged branchs');
         for (var _i = 0, mergedBranchs_1 = mergedBranchs; _i < mergedBranchs_1.length; _i++) {
             var branchName = mergedBranchs_1[_i];
-            if (branchName == 'master')
+            if (branchName == 'master' || branchName == 'release')
                 continue;
             try {
                 child_process_1.execSync("git branch -D " + branchName);
@@ -126,6 +127,21 @@ var delMergeBranch = function (mainBranchName) {
     catch (e) {
         console.log(chalk_1.default.red(e));
     }
+};
+var delMergeToReleaseBranch = function (mainBranchName) {
+    if (mainBranchName === void 0) { mainBranchName = 'release'; }
+    var branchs = child_process_1.execSync('git branch')
+        .toString()
+        .replace(/\*/gm, '')
+        .split(/\n/)
+        .map(function (_) { return _.trim(); })
+        .filter(function (_) { return _; });
+    if (!branchs.includes(mainBranchName)) {
+        console.log(chalk_1.default.red("no " + mainBranchName + " branch"));
+        delMergeToReleaseBranch('master');
+        return;
+    }
+    delMergeBranch(mainBranchName);
 };
 var lookBranchsDesc = function (branch, desc) {
     if (branch === void 0) { branch = ''; }
@@ -228,8 +244,8 @@ exports.default = (function () {
             command: 'git-del [mainBranchName]',
             description: '删除合并过的分支',
             action: function (mainBranchName) {
-                if (mainBranchName === void 0) { mainBranchName = 'master'; }
-                delMergeBranch(mainBranchName);
+                if (mainBranchName === void 0) { mainBranchName = 'release'; }
+                delMergeToReleaseBranch(mainBranchName);
             },
         },
         {

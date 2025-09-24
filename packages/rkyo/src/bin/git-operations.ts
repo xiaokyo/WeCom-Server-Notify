@@ -67,13 +67,14 @@ const delMergeBranch = mainBranchName => {
       .toString()
       .replace(/\*/gm, '')
       .replace(/master/, '')
+      .replace(/release/, '')
       .split(/\n/)
       .map(_ => _.trim())
       .filter(_ => _)
     execSync(`git checkout ${mainBranchName}`)
     if (mergedBranchs.length <= 0) throw new Error('no merged branchs')
     for (const branchName of mergedBranchs) {
-      if (branchName == 'master') continue
+      if (branchName == 'master' || branchName == 'release') continue
       try {
         execSync(`git branch -D ${branchName}`)
         console.log(chalk.green(`${branchName} branch has del success`))
@@ -84,6 +85,25 @@ const delMergeBranch = mainBranchName => {
   } catch (e) {
     console.log(chalk.red(e))
   }
+}
+
+/**
+ * 删除已经合并到release的分支
+ */
+const delMergeToReleaseBranch = (mainBranchName = 'release') => {
+  // 判断有没有该主分支，没有就不操作
+  const branchs = execSync('git branch')
+    .toString()
+    .replace(/\*/gm, '')
+    .split(/\n/)
+    .map(_ => _.trim())
+    .filter(_ => _)
+  if (!branchs.includes(mainBranchName)) {
+    console.log(chalk.red(`no ${mainBranchName} branch`))
+    delMergeToReleaseBranch('master')
+    return
+  }
+  delMergeBranch(mainBranchName)
 }
 
 const lookBranchsDesc = (branch = '', desc = '') => {
@@ -190,8 +210,8 @@ export default () => {
     {
       command: 'git-del [mainBranchName]',
       description: '删除合并过的分支',
-      action(mainBranchName = 'master') {
-        delMergeBranch(mainBranchName)
+      action(mainBranchName = 'release') {
+        delMergeToReleaseBranch(mainBranchName)
       },
     },
     {
